@@ -24,12 +24,20 @@ const Header = () => {
   return (
     <Fragment>
       <header className={classes.header}>
-        <h1>{data.name}</h1>
-        <Clock />
-        {data.main ? <div>{Math.round(data.main.temp)}&#176;</div> : null}
-        {/* <div className={classes.lower}>Timer comp</div> */}
+        <div className={classes.left}>
+          <p>{data.name}</p>
+        </div>
+        <div className={classes.mid}>
+          <Clock />
+        </div>
+        <div className={classes.right}>
+          {data.main ? <div>{Math.round(data.main.temp)}&#176;</div> : null}
+        </div>
+        
       </header>
-      <Timer />
+      <div className={classes.timer}>
+          <Timer timeStart="60" />
+        </div>
     </Fragment>
   );
 };

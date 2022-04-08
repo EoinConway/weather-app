@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import classes from './Clock.module.css';
+
 const Clock = () => {
   const [clockState, setClockState] = useState();
 
@@ -12,7 +14,8 @@ const Clock = () => {
     }, 1000);
   }, []);
 
-  return <div>{clockState} GMT</div>;
+  return <div className={classes.container}>
+      {clockState} GMT</div>;
 };
 
 export default Clock;

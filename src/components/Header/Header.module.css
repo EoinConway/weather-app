@@ -1,18 +1,40 @@
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5rem;
-    background-color: rgb(82, 80, 80);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
-    padding: 0 10%;
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
-    /* z-index: 10; */
-  }
+  position: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  overflow: hidden;
+  background-color: rgb(82, 80, 80);
+  color: white;
+  display: grid;
+  grid-template-columns: 33% 33% auto;
+  grid-template-rows: 60% 40%;
+  grid-template-areas:
+    "header header header"
+    "timer timer timer";
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 0 10%;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+  /* z-index: 10; */
+}
 
+.header div {
+  text-align: center;
+  margin-top: 1rem;
+}
 
-  
+.left, .mid, .right {
+  grid-area: "header";
+}
+
+.timer {
+  grid-area: "timer";
+  grid-column: 1/4;
+  background-color: rgb(82, 80, 80);
+  color: white;
+  text-transform: capitalize;
+  padding: 1rem;
+  font-size: 0.75rem;
+}

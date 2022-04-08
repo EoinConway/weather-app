@@ -1,17 +1,47 @@
 import React from "react";
-import classes from './Timer.module.css';
+import { useState, useEffect } from "react";
+import classes from "./Timer.module.css";
 
-const Timer = () => {
-  let barFillHeight = "0%";
+const Timer = (props) => {
+  let barFillLength = "100%";
+
+  const [remainingSeconds, setRemainingSeconds] = useState(props.timeStart);
+
+  const updateRemainingSeconds = () => {
+    setRemainingSeconds(remainingSeconds - "1");
+  };
+
+  const reset = () => {
+    setRemainingSeconds(props.timeStart);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      updateRemainingSeconds();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [remainingSeconds]);
+
+  if (remainingSeconds === -1) {
+    reset();
+  }
+
+  barFillLength = (remainingSeconds / 60) * 100;
 
   return (
-    <div className={classes.timer}>
-      <div className={classes.timer__inner}>
-        {/*dynamic value of style is a js object, which is also created with curly braces */}
-        <div className={classes.timer__fill} style={{height: barFillHeight}}></div>
+    <React.Fragment>
+      <div className={classes["timer-text"]}>
+        Reloading in {remainingSeconds}s
       </div>
-      <div className={classes.timer__label}>label</div>
-    </div>
+      <div className={classes["timer-bar"]}>
+        <div className={classes["timer-bar__inner"]}>
+          <div
+            className={classes["timer-bar__fill"]}
+            style={{ width: barFillLength + '%' }}
+          ></div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
